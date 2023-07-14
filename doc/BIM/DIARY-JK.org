@@ -1,0 +1,318 @@
+
+https://bac0.readthedocs.io/en/latest/read.html
+
+https://www.youtube.com/watch?v=sClOgKSXLVo
+https://www.youtube.com/watch?v=TyEXDnjBsD8
+
+* Telegraf bacnet
+Exporter existuje
+
+https://github.com/JurajMarcin/telegraf-bacnet
+
+Viz take https://github.com/influxdata/telegraf/blob/master/EXTERNAL_PLUGINS.md
+
+
+* Bacnet simulator
+https://docs.iotechsys.com/edge-xrt11/simulators/bacnet/overview.html
+https://docs.iotechsys.com/edge-xpert21/device-services/bacnet/bacnet-server.html
+https://docs.iotechsys.com/edge-xpert21/device-services/bacnet/bacnet-bbmd.html
+
+#+begin_src 
+docker pull iotechsys/bacnet-server:2.0 \n
+docker run --rm --name bacnet-sim iotechsys/bacnet-server:2.0
+#+end_src
+
+
+
+https://iotechsystems.my.site.com/edgexpert/s/article/BACnet-IP-walkthrough
+
+* Bacnet explorer
+https://sourceforge.net/projects/yetanotherbacnetexplorer/
+
+* netmap 
+netmap umí s bacnet pracovat taky - viz /usr/share/nmap/scripts/bacnet-info.nse
+
+
+* prometheus
+Asi bude potřeba nějak ukládat ty hodnoty. Time series database, něco jako
+telegraf. Šlo by použít ten prometheus, resp. to, co teď tvoří Horejsek pro RB?
+
+https://prometheus.io/
+
+Thanos je HA řešní prometheus.
+
+Já používám telegraf/influxdb
+
+Srovnání 
+https://www.metricfire.com/blog/prometheus-vs-influxdb/
+
+
+Existuje Prometheus exporter pro bacnet 
+https://gist.github.com/dechamps/f1e5b181501f811ec7b679ccfd63a754
+
+#+begin_quote
+Wondering if anyone is looking into this topic again? BACNET is still holding on
+in a lot of older facilities and even some newer ones and I find myself still
+looking for an “easy” solution here. Additional plugins have been made available
+for telegraf to include things like MODBUS and MQTT already which is great would
+be nice if there were also a BACNET plugin here as well for either MSTP or IP.
+Serial / IP → Device Instance / address → data type (AI/AV/BV/MSV) → object_id.
+Results returned via influx output plugin. Example deployment DIN Rail Mounted
+PC → spin up local instance of telegraf → configure BACNET plugin for data to
+collect → configure influx output plugin to centralized influxdb for further
+processing.
+---
+odpoved
+
+Its funny to hear people say BACNet is still holding on in older facilities. It
+is actually the most commons BAS Communications protocol for anything that is
+not Industrial.
+
+Most industrial plants use MODBUS, most building control / energy management
+systems on the market are BACnet.
+
+MODBUS is a 40+yo protocol. It is very difficult to work with compared to
+BACnet.
+
+I for one would love to see a BACNet plug-in but I am not skilled enough to
+write it.
+
+---
+BACNET is still everywhere and much like MODBUS will probably be around for
+another 40 years. That is exactly why I am still interested in and surprised
+really that this has not already been created? Seems to me at least this would
+be a great use case for telegraf to slide into existing building automation
+networks that utilize BACNET heavily, consume this large data source, and expose
+it back out to newer / more accessible time series DBs such as influx. I too
+however am not skilled enough to write it myself. Keep searching everyday hoping
+one of these days enough other people want to see the same thing.
+
+
+#+end_quote
+
+https://bac0.readthedocs.io/en/latest/index.html
+
+
+
+
+* Kontejnery
+
+ krepsjan@home  ~/ownCloud/ClusterAcademy   docker search bacnet
+NAME                                       DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED
+baardl/bacnet-ip-agent-java                Listen to Bacnet UDP traffic.                   1                    
+mfrancis95/bacnet-stack                                                                    1                    
+ucmercedandeslab/bacnet-server                                                             1                    
+globalspaces/bacnet-enc-dec                BACnet encode decode application                1                    
+iotechsys/bacnet-server                    Dynamic BACnet Server                           1                    
+edgexfoundry/docker-device-bacnet          ARCHIVED! The legacy device service to conne…   0                    
+iotechsys/bacnet-sim                       BACnet SIM                                      0                    
+nastymorbol/bacnetnf                                                                       0                    
+iconics/bacnet                                                                             0                    
+biqappliance/bacnettools                   BACnet diagnistic tools                         0                    
+davejonestechnotects/bacnet-mqtt-gateway   BACnetMqttGateway Python app                    0                    
+gspacesadmin/bacnetserver                  Azure IOT Edge Bacnet server for use with pr…   0                    
+edgexfoundry/device-bacnet-arm64           ARM64 device service to connect to BACNet pr…   0                    
+ananthareddy/bacnet                                                                        0                    
+edgexfoundry/device-bacnet                 Device service to connect to BACNet protocol…   0                    
+dclark3774/bacnet                          V005 is beta                                    0                    
+edgexfoundry/docker-device-bacnet-arm64    ARCHIVED! ARM64 legacy device service to con…   0                    
+baardl/bacnet-azure-iot-java                                                               0                    
+saschacis/bacnet-simulator                                                                 0                    
+alwarmb/bacnetbridge_device                                                                0                    
+alwarmb/bacnetbridge_discover                                                              0                    
+biqjason/bacnettools                                                                       0                    
+alwarmb/bacnetbridge_distribute                                                            0                    
+pawel69/bacnetclient                                                                       0                    
+loq9/bacnet-stack     
+
+* modbus
+https://sourceforge.net/projects/modrssim/
+
+* Dokumentace
+dokumentace, kterou potřebuju pro ten Bacnet je v 
+
+/data/doc/building/DSPS/ELEKTRO silno_ PD skutečného stavu/Silnoproud/
+
+
+* ifcopenshell
+https://view.ifcopenshell.org/
+
+* Zkratky
+IRC - Integrated Room Control
+PIR sensor - passive infrared sensor
+DALI - Digital Addressable Lighting Interface, protokol. 
+* Desigo CC 
+* SW Opensource
+ - https://github.com/opensourceBIM/BIMsurfer
+ - https://github.com/opensourceBIM/BIMserver - javový server založený na
+   Tomcatu. 
+ - https://github.com/xeokit/xeokit-bim-viewer - pouze viewer, který nahrává
+   modely z lokálního filesystému. 
+ - https://github.com/xeokit/xeokit-sdk
+ - Existuje neco pro Blender
+ - https://wwb-space.de/apps/bimsurfer3/
+ - 
+
+Includes UI to select project, visual settings and stats
+
+When BIMsurfer 3 is loaded from a BIMserver, it will try to connect to it's API, otherwise, it will connect to http://localhost:8080
+
+First time you'll have to login with credentials valid on your BIMserver, after that those will be stored in localStorage
+
+Be advised that not all combinations of all settings will result in something
+that works 
+
+* BimSurfer
+Model loader je ten Bimserver.
+
+Vypadá to, že po prvotní instalaci bude ten BIMServer ideální kandidát na
+kontejnerizaci. Na základě tomcat official image. 
+
+Něco jako 
+
+#+begin_src 
+docker run -d  -p 8080:8080 tomcat
+#+end_src
+
+potřebuje to tomcat - javový webserver od Apache. 
+
+
+jar z https://github.com/opensourceBIM/BIMserver/releases lze spustit lokálně a
+hned si s tím začít hrát, je v tom i ten tomcat, takže to funguje OOB. 
+
+
+#+begin_src 
+Setting up...
+	Setting up admin account...
+	Admin Username cannot be empty
+Setup aborted
+Setting up...
+	Setting up admin account...
+	Username must be a valid e-mail address
+Setup aborted
+Setting up...
+	Setting up admin account...
+		Admin account successfully setup
+	Skipping email setup...
+	Checking internet connection _from_ your BIMserver...
+		Internet connection OK
+	Installing all extended data schemas...
+		IFC_STEP_2X3TC1 installed OK
+		IFC_STEP_4 installed OK
+		IFC_STEP installed OK
+		IFC_XML_2X3TC1 installed OK
+		IFC_XML_4 installed OK
+		IFC_JSON_2X3TC1 installed OK
+		IFC_JSON_4 installed OK
+		IFC_JSON_GEOM_2X3TC1 installed OK
+		IFC_JSON_GEOM_4 installed OK
+		BCF_ZIP_1_0 installed OK
+		BCF_ZIP_2_0 installed OK
+		BCF_ZIP_2_1 installed OK
+		GLTF_1_0 installed OK
+		GLTF_BIN_1_0 installed OK
+		COLLADA_1_5 installed OK
+		KMZ_2_2_0 installed OK
+		BINARY_GEOMETRY_6 installed OK
+		CITYGML_2_0_0 installed OK
+		VIS_3D_JSON_1_0 installed OK
+		GUID_PROPERTIES_DATASET_0_0_1 installed OK
+		MPG_OBJECT_JSON_0_0_3 installed OK
+		MPG_RESULTS_JSON_0_0_1 installed OK
+		LOD_CSV_1_0 installed OK
+		VALIDATION_JSON_1_0 installed OK
+		INFO_3D_EXCEL_1_0 installed OK
+		UNSTRUCTURED_UTF8_TEXT_1_0 installed OK
+		GEOMETRY_GENERATION_REPORT_JSON_1_1 installed OK
+		GEOMETRY_GENERATION_REPORT_HTML_1_1 installed OK
+		CLASHDETECTION_RESULT_JSON_1_0 installed OK
+		IFC_ANALYTICS_JSON_1_0 installed OK
+		VALIDATION_JSON_2_0 installed OK
+		Extended Data Schemas installed OK
+	Installing plugins...
+		Installing bimviews...
+		Successfully installed BIMvie.ws (org.opensourcebim:bimviews:0.0.186)
+
+		Installing bimsurfer3...
+		Successfully installed BimSurfer (org.opensourcebim:bimsurfer3:0.0.274)
+
+		Installing ifcopenshellplugin...
+		Successfully installed IfcOpenShell-BIMserver-plugin (org.opensourcebim:ifcopenshellplugin:0.5.93)
+
+		Installing ifcplugins...
+		Successfully installed IfcPlugins (org.opensourcebim:ifcplugins:0.0.101)
+
+		Installing binaryserializers...
+		Successfully installed BinarySerializers (org.opensourcebim:binaryserializers:0.0.95)
+
+		Installing console...
+		Successfully installed Console (org.opensourcebim:console:0.0.69)
+
+		Installing gltf...
+		Successfully installed Gltf (org.opensourcebim:gltf:0.0.61)
+
+		Installing mergers...
+		Successfully installed Mergers (org.opensourcebim:mergers:0.0.67)
+
+		All remote plugins successfully installed
+	
+	Open BIMvie.ws
+#+end_src
+
+Pak mě to hodí na http://localhost:8082/apps/bimviews/?page=Login
+
+Což instalace na serveru neudělala. 
+
+Testovací files.
+https://github.com/buildingSMART/Sample-Test-Files/tree/master/IFC%202x3/Schependomlaan
+
+
+Problém s instalací pluginů 
+
+As Ruben said, this is not a BIMserver issue, but triggered by a change of Maven
+URLs. BIMserver was adapted with these updates: a20ba03 and 69b4b4d, which are
+included in developer release 1.5.182. You (or Tecnoteca for that matter) could
+create a maintenance branch for 1.5.138 and try to cherry-pick these two commits
+(if that is easier than upgrading to the latest release). We can not solve this
+on the BIMserver side. Official maintenance branches do only make sense for
+major releases. Otherwise we would have to patch every single developer release
+that someone might have in use.
+
+* Maven repository
+
+https://mvnrepository.com/artifact/org.opensourcebim
+
+Z toho pak tahá ten Tomcat při instalaci pluginy. 
+
+Cesty jsou v instalátoru ale správně, je tam https://repo1.maven.org/maven2/ což
+obsahuje org/opensourcebim/
+
+Takže se z nějakého důvodu na ten repozitář pouze script nepřipojí. 
+
+Nicméně se to dá nainstalovat i bez připojení
+
+https://github.com/opensourceBIM/BIMserver/wiki/Installing-without-internet-connection
+
+
+* Problem 
+
+Verze bim serveru je na obou instalacích stejná. Ale nefunguje to správně na
+serveru
+
+Navíc, na serveru mám míň paměti alokovaný pro javu. Ale pouužité je stejně jen
+málo. Takže to nevadí. 
+Na serveru je jiná verze javy, jiné nastavení cest k java classám 
+
+classpath na lokále obsahuje cesty k maven věcem, možná proto to funguje na
+serveru blbě - tam to není. 
+
+
+Zkusil jsem to ještě  v kontejneru, který jsem si předělal trochu podle svého
+A tam to funguje, kontejner mám v ~/tmp/bimserver
+
+Chtělo by to ještě napsat docker-compose.yml a dát to pak na server. Je to
+postavené na tomcat kontejneru, přesně tak, jak jsem si představoval, že by se
+to mělo udělat. 
+
+
+

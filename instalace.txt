@@ -1,0 +1,4 @@
+wget https://github.com/opensourceBIM/BIMserver/releases/download/v1.5.184/bimserverwar-1.5.184.war
+docker build --build-arg BIMSERVER_WAR=bimserverwar-1.5.184.war -t bimserver:latest . 
+docker run -p 8080:8080 -v ./home:/var/bimserver/home
+docker run -p 8080:8080 -v /home/krepsjan/tmp/bimserver/home:/var/bimserver/home bimserver
