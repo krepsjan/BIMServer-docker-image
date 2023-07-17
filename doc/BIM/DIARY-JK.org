@@ -149,8 +149,9 @@ DALI - Digital Addressable Lighting Interface, protokol.
  - https://github.com/xeokit/xeokit-bim-viewer - pouze viewer, který nahrává
    modely z lokálního filesystému. 
  - https://github.com/xeokit/xeokit-sdk
- - Existuje neco pro Blender
+ - Existuje plugin pro Blender
  - https://wwb-space.de/apps/bimsurfer3/
+ - 
  - 
 
 Includes UI to select project, visual settings and stats
@@ -167,6 +168,10 @@ Model loader je ten Bimserver.
 
 Vypadá to, že po prvotní instalaci bude ten BIMServer ideální kandidát na
 kontejnerizaci. Na základě tomcat official image. 
+
+Chce to asi javu 11. Ale ani s tou mi to nenahraje ten soubor stavařina. 
+
+
 
 Něco jako 
 
@@ -315,4 +320,18 @@ postavené na tomcat kontejneru, přesně tak, jak jsem si představoval, že by
 to mělo udělat. 
 
 
+
+
+
+https://ifcjs.github.io/info/docs/introduction
+
+https://github.com/AECgeeks/IfcOpenShell
+
+
+
+#+begin_export ascii
+[Budova A_stavařina.ifc] class java.util.ArrayList cannot be cast to class
+java.lang.Long (java.util.ArrayList and java.lang.Long are in module java.base
+of loader 'bootstrap')
+#+end_export
 
